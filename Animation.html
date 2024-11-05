@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css styling</title>
+    <style>
+        body{
+            margin: 0; position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%); background: rgb(134, 180, 149);
+        }
+        h1 span{
+            color: rgb(10, 24, 37);
+            position: relative; display: inline-block; font-size: 8vh; 
+            font-family: 'Times New Roman', Times, serif; animation: anim 3.8s alternate infinite  calc(var(--i)* 0.5s);
+        }
+        @keyframes anim{
+            0%{ transform: translateY(0) rotate(0);}
+            40%{ transform: translateY(0) rotate(0);}
+            50%{ transform: translateY(-100px) rotate(18deg);}
+            60%{ transform: translateY(0) rotate(360deg);}
+            100%{ transform: translateY(0) rotate(360deg);}
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        <span class="li" style="--i:1">H</span>
+        <span class="li" style="--i:2">e</span>
+        <span class="li" style="--i:3">l</span>
+        <span class="li" style="--i:4">l</span>
+        <span class="li" style="--i:5">o</span>
+        <span class="li" style="--i:10">W</span>
+        <span class="li" style="--i:9">o</span>
+        <span class="li" style="--i:8">r</span>
+        <span class="li" style="--i:7">l</span>
+        <span class="li" style="--i:6">d</span>
+    </h1>
+    <script>
+         function myAnimation() {
+            for (let index = 1; index <=10; index++) {
+                let r= randomNum(256);
+                let g= randomNum(256);
+                let b= randomNum(256);
+                let id = index + 1;
+
+                setTimeout(() => {
+                    document.querySelectorAll(`.li:nth-child(${index})`).forEach(span => {
+                        span.style.textShadow = `
+                        1px 1px 10px rgb(${r}, ${g}, ${b}),
+                        1px 1px 20px rgb(${r}, ${g}, ${b}),
+                        1px 1px 30px rgb(${r}, ${g}, ${b}),
+                        1px 1px 40px rgb(${r}, ${g}, ${b}),
+                        1px 1px 60px rgb(${r}, ${g}, ${b})
+                    `;
+                }, index * 2000);
+            })
+        }
+    }
+
+        setInterval(myAnimation, 2000); 
+
+        function randomNum(num) {
+            return Math.floor(Math.random() * num);
+        }
+    </script>
+</body>
+</html>
